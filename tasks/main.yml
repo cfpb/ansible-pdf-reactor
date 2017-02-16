@@ -1,5 +1,5 @@
 ---
--name: find pdfreactor directory
+- name: find pdfreactor directory
   find:
     paths: "{{ PDF_REACTOR_INSTALL_DIR }}"
     patterns: ""
