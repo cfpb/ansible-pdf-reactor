@@ -1,11 +1,18 @@
 ---
+-name: find pdfreactor directory
+  find:
+    paths: "{{ PDF_REACTOR_INSTALL_DIR }}"
+    patterns: ""
+    file_type: "directory"
+  register: PDF_reactor_exist
+
 - name: Download PDFReactor
   get_url: 
     url: "{{ PDF_REACTOR_URL }}/{{ PDF_REACTOR_FILE }}"
     dest: "/tmp/{{ PDF_REACTOR_FILE }}"
     timeout: 60
     use_proxy: true
-    creates: "{{ PDF_REACTOR_INSTALL_DIR }}/PDFreactor/*"
+  when: "PDF_reactor_exist.files.length == 0"
 
 - name: Untar PDFReactor
   unarchive: 
