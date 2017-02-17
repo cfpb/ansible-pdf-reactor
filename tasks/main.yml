@@ -1,10 +1,15 @@
 ---
-- name: find pdfreactor directory
+- name: Find pdfreactor directory
   find:
     paths: "{{ PDF_REACTOR_INSTALL_DIR }}"
     patterns: ""
     file_type: "directory"
   register: PDF_reactor_exist
+
+- name: Delete error log
+  file:
+    state: absent
+    path: "{{PDF_REACTOR_INSTALL_DIR}}/bin/error.log"
 
 - name: Download PDFReactor
   get_url: 
