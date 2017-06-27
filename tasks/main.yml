@@ -43,3 +43,9 @@
 
 - name: Start and enable pdfreactor
   service: name=pdfreactorwebservice state=started enabled=yes
+
+- name: Delete examples
+  file:
+    state: absent
+    path: "{{PDF_REACTOR_INSTALL_DIR}}/samples"
+
